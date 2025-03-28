@@ -86,18 +86,6 @@ class Mediator:
                     similarities[j] = [-1] * len(r1)
                     used.append(max_index)
 
-        """
-        for i in range(0, len(r1)):
-            if duplicate[i] > -1:
-                print(r1[i].string())
-                print(similarities[duplicate[i]][i])
-                print(r2[duplicate[i]].string())
-                print('----------------------------------------')
-            else:
-                print(r1[i].string())
-                print(similarities[duplicate[i]][i])
-                print('----------------------------------------')
-        """
         print('Removing duplicates based on similarity')
         "Löscht die Filme aus r2, welche ein identisches Objekt in r1 (wahrscheinlich) besitzen"
         duplicate = sorted(duplicate, reverse= True)
@@ -118,5 +106,4 @@ class Mediator:
 if __name__ == "__main__":
     m = Mediator()
     m.showData('tt2911666','2')
-    #m.showData('John WIck','1')
 

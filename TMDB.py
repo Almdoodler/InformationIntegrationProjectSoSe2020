@@ -8,7 +8,7 @@ class TMDB:
     movie_url = 'https://api.themoviedb.org/3/movie/'
     find_id_url = 'https://api.themoviedb.org/3/find/'
     credits = '/credits'
-    api_key = '?api_key=f4de2a6d50c4c02af937c4fe2db27c87'
+    api_key = '<key_removed>'
     languange = '&lang=en_US'
 
     # Gibt Ergebnisse für Suchanfrage mittels movieName zurück;
@@ -17,8 +17,6 @@ class TMDB:
     def search(self, movie_name):
         r = requests.get(self.search_url + self.api_key + self.query + movie_name)
         dic = r.json()
-        #       print(dic)
-        #       print(str(dic['total_results']) + "total number")
         movies = []
         if int(dic['total_results']) >= 1:
             print('Fetching ' + str(dic['total_results']) + ' results on ' + str(dic['total_pages']) + ' pages from TMDB')
@@ -29,9 +27,6 @@ class TMDB:
                 current_page = req.json()
                 movies.extend(create_movies(self, current_page['results']))
                 i += 1
-        #            for movie in movies:
-        #                print(movie.getTitle() + " " + str(movie.getImbID()) + " " + str(movie.getYear()))
-        #            print(len(movies))
         else:
             print('Nothing found')
             movies = []
@@ -71,7 +66,6 @@ def create_movies(self, results):
         if 'imdb_id' in details:  # Check whether details even contains a imdb_id
             if str(details['imdb_id']) and not str(details['imdb_id']).isspace() and not str(
                     details['imdb_id']).lower() == 'none':
-                # print(str(details['imdb_id']))
                 imdb_id = details['imdb_id']
             else:
                 imdb_id = -1
@@ -81,7 +75,6 @@ def create_movies(self, results):
             production = set()
             for production_company in details['production_companies']:
                 production.add(production_company['name'])
-        #            print(production)
         else:
             production = set()
         if 'runtime' in details:
@@ -108,7 +101,6 @@ def get_cast(self, element):
 
 if __name__ == "__main__":
     s = TMDB()
-    # result = s.search('Batman')
     result = s.search_id('tt2911666')
     for element in result:
         print(element.string())

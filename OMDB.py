@@ -4,8 +4,8 @@ import math
 
 
 class OMDB:
-    search_url = 'https://www.omdbapi.com/?apikey=3c011de4&s='
-    movie_url = 'https://www.omdbapi.com/?apikey=3c011de4&i='
+    search_url = 'https://www.omdbapi.com/?apikey=<key_removed>'
+    movie_url = 'https://www.omdbapi.com/?apikey=<key_removed>'
 
     """ Gibt Ergebnisse für Film-Suchanfrage 'movieName' zurück. 
     return: movies (list<Movie>) """
@@ -62,7 +62,6 @@ class OMDB:
                     movie.setRuntime(0)
                 if not acts:
                     movie.setActors([])
-                # print(movie.string())
         print('Finished fetching results from OMDB')
         return movies
 
@@ -72,7 +71,6 @@ class OMDB:
     def search_id(self, id):
         r = requests.get(self.movie_url + id)
         dic = r.json()
-        # print(dic)
         movies = []
 
         if dic['Response'] == "False":
@@ -110,7 +108,6 @@ class OMDB:
             if not acts:
                 movie.setActors([])
             movies.append(movie)
-            # print("movie ", movie.string())
 
         return movies
 

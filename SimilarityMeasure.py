@@ -45,7 +45,6 @@ class SimilarityMeasure:
 
 
     def get_cosine(self, vec1, vec2):
-        # print vec1, vec2
         intersection = set(vec1.keys()) & set(vec2.keys())
         numerator = sum([vec1[x] * vec2[x] for x in intersection])
 
